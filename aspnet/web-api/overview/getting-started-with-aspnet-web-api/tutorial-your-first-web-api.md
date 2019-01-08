@@ -2,7 +2,7 @@
 uid: web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
 title: 开始使用 ASP.NET Web API 2 (C#)
 author: MikeWasson
-description: HTTP 不只是为了提供网页。 它也是用于生成 Api，用于公开服务和数据的强大平台。 HTTP 是简单、 灵活和 ubiq...
+description: HTTP不只提供网页服务。 HTTP也是一个强大的构建公共服务和数据API的平台。 HTTP简单、 灵活且无所不在...
 ms.author: riande
 ms.date: 11/28/2017
 msc.legacyurl: /web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api
@@ -20,9 +20,9 @@ ms.locfileid: "48795288"
 
 [下载已完成的项目](https://code.msdn.microsoft.com/Sample-code-of-Getting-c56ccb28)
 
-HTTP 不只是为了提供网页。 HTTP 也是一个强大的平台，用于构建公开服务和数据的 Api。 HTTP 是简单、 灵活且无所不在。 您可以将几乎任何平台都有有 HTTP 库，因此 HTTP 服务可满足范围广泛的客户端，包括浏览器、 移动设备和传统桌面应用程序。
+HTTP不只提供网页服务。 HTTP也是一个强大的构建公共服务和数据API的平台。 HTTP简单、 灵活且无所不在。 大多数你能想到的平台都有HTTP库，因此 HTTP 服务可广泛覆盖客户端，包括浏览器、 移动设备和传统桌面应用程序。
 
-ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 在本教程中，您将使用 ASP.NET Web API 创建的 web API 返回的产品列表。
+ASP.NET Web API 是一个用于在.NET Framework框架上构建 web Api 的框架。 在本教程中，您将使用 ASP.NET Web API 创建一个返回产品列表的 web API。
 
 ## <a name="software-versions-used-in-the-tutorial"></a>在本教程中使用的软件版本
 
@@ -33,7 +33,7 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 
 ## <a name="create-a-web-api-project"></a>创建 Web API 项目
 
-在本教程中，您将使用 ASP.NET Web API 创建的 web API 返回的产品列表。 前端的 web 页面使用 jQuery 来显示结果。
+在本教程中，您您将使用 ASP.NET Web API 创建一个返回产品列表的 web API。 前端的 web 页面使用 jQuery 来显示结果。
 
 ![](tutorial-your-first-web-api/_static/image1.png)
 
