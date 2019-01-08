@@ -33,7 +33,7 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 
 ## <a name="create-a-web-api-project"></a>创建 Web API 项目
 
-在本教程中，您将使用 ASP.NET Web API 创建的 web API 返回的产品列表。 前端的 web 页面使用 jQuery 来显示结果。
+在本教程中，您将使用 ASP.NET Web API 创建的 web API 返回的产品列表。 前端 web 页面使用 jQuery 来显示结果。
 
 ![](tutorial-your-first-web-api/_static/image1.png)
 
@@ -51,28 +51,28 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 > 此外可以创建 Web API 项目中使用&quot;Web API&quot;模板。 Web API 模板使用 ASP.NET MVC 提供 API 帮助页。 因为我想要显示而无需 MVC Web API，我正在本教程中使用空模板。 一般情况下，不需要知道要使用 Web API 的 ASP.NET MVC。
 
 
-## <a name="adding-a-model"></a>添加模型
+## <a name="adding-a-model"></a>添加实体类
 
-模型是表示应用程序中的数据的对象。 ASP.NET Web API 可以自动序列化到 JSON、 XML 或其他某种格式，您的模型，然后将序列化的数据写入到 HTTP 响应消息的正文。 只要客户端可以读取序列化格式，它可以反序列化对象。 大多数客户端可以分析 XML 或 JSON。 此外，客户端可以指示它希望通过 HTTP 请求消息中设置 Accept 标头的格式。
+在你的应用程序中实体类代表数据对象。 ASP.NET Web API 可以自动将实体类序列化到 JSON、 XML 或其他某种格式，然后将被序列化的数据写入到 HTTP 响应消息的正文中。 只要客户端可以读取序列化格式，它就可以反序列化对象。 大多数客户端可以解析 XML 或 JSON。 此外，客户端可以通过在HTTP请求消息中设置Accept头来指示它想要的格式。
 
-让我们首先创建一个表示产品的简单模型。
+让我们首先创建一个表示产品的简单实体类。
 
-如果解决方案资源管理器尚不可见，请单击**视图**菜单，然后选择**解决方案资源管理器**。 在解决方案资源管理器，右键单击模型文件夹。 从上下文菜单中，选择**外**然后选择**类**。
+如果解决方案资源管理器还看不见，请单击**视图**菜单，然后选择**解决方案资源管理器**。 在解决方案资源管理器，右键单击实体类文件夹。 从上下文菜单中，选择**新增**然后选择**类**。
 
 ![](tutorial-your-first-web-api/_static/image4.png)
 
-将类命名&quot;产品&quot;。 添加以下属性来`Product`类。
+将类命名&quot;Product&quot;。 添加以下属性到`Product`类。
 
 [!code-csharp[Main](tutorial-your-first-web-api/samples/sample1.cs)]
 
 ## <a name="adding-a-controller"></a>添加控制器
 
-在 Web API 中，*控制器*是处理 HTTP 请求的对象。 我们将添加一个可以返回的产品列表或一个产品按 ID 指定的控制器
+在 Web API 中，*控制器*是处理 HTTP 请求的对象。 我们将添加一个控制器用于返回产品列表或者指定ID的产品
 
 > [!NOTE]
-> 如果您使用过 ASP.NET MVC，您已熟悉控制器。 Web API 控制器类似于 MVC 控制器，但继承**ApiController**类而不是**控制器**类。
+> 如果您使用过 ASP.NET MVC，那你就已熟悉控制器了。 Web API 控制器类似于 MVC 控制器，但继承**ApiController**类而不是**Controller**类。
 
-在中**解决方案资源管理器**，右键单击 Controllers 文件夹。 选择**外**，然后选择**控制器**。
+在中**解决方案资源管理器**，右键单击 Controllers 文件夹。 选择**新增**，然后选择**控制器**。
 
 ![](tutorial-your-first-web-api/_static/image5.png)
 
@@ -84,41 +84,42 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 
 ![](tutorial-your-first-web-api/_static/image7.png)
 
-基架将创建名为 ProductsController.cs 控制器文件夹中的文件。
+基架将在控制器文件夹中创建名为 ProductsController.cs 的文件。
 
 ![](tutorial-your-first-web-api/_static/image8.png)
 
 > [!NOTE]
-> 无需将你的控制器放入名为控制器的文件夹。 文件夹名称为只是组织的源文件的简便方法。
+> 你不需要将你的控制器放入名为Controllers的文件夹。 文件夹名称只是组织源文件的便捷方式。
 
 
-如果没有打开此文件，则双击文件将其打开。 此文件中的代码替换为以下：
+如果文件没有打开，请双击文件将其打开。 将此文件中的代码替换为以下代码：
 
 [!code-csharp[Main](tutorial-your-first-web-api/samples/sample2.cs)]
 
-若要使示例尽量简单，产品存储在控制器类中的固定数组。 当然，在实际的应用程序，将查询数据库或使用某些其他外部数据源。
 
-控制器定义返回产品的两个方法：
+为了使示例简单，products存储在控制器类内的固定数组中。 当然，在实际应用程序中，你将查询数据库或使用其他一些外部数据源。
 
-- `GetAllProducts`方法返回作为产品的整个列表**IEnumerable&lt;产品&gt;** 类型。
-- `GetProduct`方法查找单个产品通过其 id。
+控制器定义2个返回products的方法：
 
-就这么简单！ 具有工作 web API。 在控制器上的每个方法对应于一个或多个 Uri:
+- `GetAllProducts`方法以**IEnumerable&lt;产品&gt;** 类型返回整个products列表。
+- `GetProduct`方法通过id查找单个产品。
 
-| 控制器方法 | URI |
+就这么简单！ 你现在有一个可以工作的 web API 了。 控制器中的每个方法对应于一个或多个 Uri:
+
+| Controller 方法 | URI |
 | --- | --- |
-| GetAllProducts | / api/产品 |
-| 为 getproduct | /api/产品/*id* |
+| GetAllProducts | / api/products |
+| getproduct | /api/products/*id* |
 
-有关`GetProduct`方法， *id*在 URI 中是一个占位符。 例如，若要获取 id 为 5 的产品，URI 是`api/products/5`。
+方法`GetProduct`， *id*在 URI 中是一个占位符。 例如，若要获取 id 为 5 的产品，URI 是`api/products/5`。
 
-有关 Web API 如何将 HTTP 请求路由到控制器方法的详细信息，请参阅[ASP.NET Web API 中的路由](../web-api-routing-and-actions/routing-in-aspnet-web-api.md)。
+有关Web API如何将HTTP请求路由到控制器方法的详细信息，请参阅[ASP.NET Web API 中的路由](../web-api-routing-and-actions/routing-in-aspnet-web-api.md)。
 
-## <a name="calling-the-web-api-with-javascript-and-jquery"></a>调用 Web API 使用 Javascript 和 jQuery
+## <a name="calling-the-web-api-with-javascript-and-jquery"></a>使用 Javascript 和 jQuery调用 Web API
 
-在本部分中，我们将添加使用 AJAX 来调用 web API 的 HTML 页。 我们将使用 jQuery 进行 AJAX 调用以及使用结果更新页面。
+在本部分中，我们将添加使用 AJAX 来调用 web API的HTML页面。 我们将使用 jQuery 进行 AJAX 调用以及调结果去更新页面。
 
-在解决方案资源管理器，右键单击该项目并选择**外**，然后选择**新项**。
+在解决方案资源管理器，右键单击该项目并选择**新增**，然后选择**新项**。
 
 ![](tutorial-your-first-web-api/_static/image9.png)
 
@@ -126,7 +127,7 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 
 ![](tutorial-your-first-web-api/_static/image10.png)
 
-使用以下标记替换此文件中的所有内容：
+使用以下代码替换此文件中的所有内容：
 
 [!code-html[Main](tutorial-your-first-web-api/samples/sample3.html)]
 
@@ -134,19 +135,19 @@ ASP.NET Web API 是一个框架，用于.NET Framework 之上构建 web Api。 �
 
 ### <a name="getting-a-list-of-products"></a>获取产品列表
 
-若要获取的产品的列表，请将发送到 HTTP GET 请求&quot;/api/产品&quot;。
+若要获取的产品列表，请发送 HTTP GET 请求到&quot;/api/products&quot;。
 
 JQuery[先前所述 getJSON](http://api.jquery.com/jQuery.getJSON/)函数发送 AJAX 请求。 响应包含 JSON 对象的数组。 `done`函数指定如果请求成功，则调用的回调。 在回调中，我们使用的产品信息更新 DOM。
 
 [!code-html[Main](tutorial-your-first-web-api/samples/sample4.html)]
 
-### <a name="getting-a-product-by-id"></a>获取按 ID 的产品
+### <a name="getting-a-product-by-id"></a>根据ID获取产品
 
-若要获取产品的 ID，将发送到 HTTP GET 请求&quot;/api/产品/*id*&quot;，其中*id*是产品 id。
+若要根据ID获取产品，请发送 HTTP GET 请求到&quot;/api/products/*id*&quot;，其中*id*是产品 id。
 
 [!code-javascript[Main](tutorial-your-first-web-api/samples/sample5.js)]
 
-我们仍调用`getJSON`为了发送 AJAX 请求，但这次我们将该 ID 在请求 URI 中。 此请求的响应是一种产品的 JSON 表示形式。
+我们仍调用`getJSON`发送 AJAX 请求，但这次我们将 ID 放在 URI 请求中。 此请求的响应是单个产品的JSON表示形式。
 
 ## <a name="running-the-application"></a>运行应用程序
 
@@ -154,33 +155,33 @@ JQuery[先前所述 getJSON](http://api.jquery.com/jQuery.getJSON/)函数发送 
 
 ![](tutorial-your-first-web-api/_static/image11.png)
 
-若要获取按 ID 的产品，请输入的 ID，并单击搜索:
+若要获根据ID获取产品，请输入 ID，并点击搜索:
 
 ![](tutorial-your-first-web-api/_static/image12.png)
 
-如果输入了无效的 ID，则服务器将返回 HTTP 错误：
+如果输入了无效的 ID，服务器将返回 HTTP 错误：
 
 ![](tutorial-your-first-web-api/_static/image13.png)
 
 ## <a name="using-f12-to-view-the-http-request-and-response"></a>使用 f12 键查看 HTTP 请求和响应
 
-当您正在使用的 HTTP 服务时，它可以是非常有用，可以查看 HTTP 请求和请求消息。 可以在 Internet Explorer 9 中使用 F12 开发人员工具来执行此操作。 在 Internet Explorer 9 中，按**F12**打开工具。 单击**网络**选项卡并按**启动捕获**。 现在，转回 web 页并按**F5**来重新加载 web 页。 Internet Explorer 将捕获在浏览器和 web 服务器之间的 HTTP 流量。 摘要视图显示了一个页面的所有网络流量：
+当您正在使用的 HTTP 服务时，它对查看 HTTP 请求和请求消息非常有用。 可以在 Internet Explorer 9 中使用 F12 开发人员工具来执行此操作。 在 Internet Explorer 9 中，按**F12**打开工具。 单击**网络**选项卡并按**启动捕获**。 现在，返回 web 页面并按**F5**来重新加载 web 页面。 Internet Explorer 将捕获在浏览器和 web 服务器之间的 HTTP 数据。 摘要视图显示了一个页面的所有网络流量：
 
 ![](tutorial-your-first-web-api/_static/image14.png)
 
-找到的相对 URI 的条目"api/产品 /"。 选择此项，然后单击**转到详细视图**。 在详细信息视图中，有选项卡以查看请求和响应标头和正文。 例如，如果您单击**请求标头**选项卡上，可以看到客户端请求&quot;应用程序 /json&quot; Accept 标头中。
+找到的对应"api/products /"的URI。 选择此项，然后单击**转到详细视图**。 在详细信息视图中，有选项卡以查看请求和响应标头和正文。 例如，如果您单击**请求标头**选项卡上，可以看到客户端请求&quot;application /json&quot; Accept 标头中。
 
 ![](tutorial-your-first-web-api/_static/image15.png)
 
-如果单击响应正文选项卡，可以看到如何将产品列表已序列化为 JSON。 其他浏览器具有类似的功能。 另一个有用工具是[Fiddler](http://www.fiddler2.com/fiddler2/)、 一个 web 调试代理。 您可以使用 Fiddler，若要查看你的 HTTP 流量，以及编写 HTTP 请求，这将使您可以完全控制 HTTP 标头在请求中。
+如果单击响应正文选项卡，可以看到如何将产品列表已序列化为 JSON。 其他浏览器也具有类似的功能。 另一个有用工具是[Fiddler](http://www.fiddler2.com/fiddler2/)、 一个 web 调试代理。 您可以使用 Fiddler，若要查看你的 HTTP 数据，以及编写 HTTP 请求，这将使您可以完全控制 HTTP 标头在请求中。
 
-## <a name="see-this-app-running-on-azure"></a>请参阅在 Azure 上运行此应用程序
+## <a name="see-this-app-running-on-azure"></a>在 Azure 上运行此应用程序
 
-若要查看已完成的站点作为实时 web 应用运行吗？ 只需单击下面的按钮，可以将完整版本的应用部署到 Azure 帐户。
+您是否希望将完成的网站作为实时网络应用运行？ 只需单击以下按钮，即可将完整版本的应用程序部署到Azure帐户。
 
 [![](http://azuredeploy.net/deploybutton.png)](https://deploy.azure.com/?WT.mc_id=deploy_azure_aspnet&repository=https://github.com/tfitzmac/WebAPI-ProductsApp#/form/setup)
 
-需要一个 Azure 帐户才能将此解决方案部署到 Azure。 如果你还没有帐户，你具有以下选项：
+需要一个 Azure 帐户才能将此解决方案部署到 Azure。 如果你还没有帐户，你可以参考以下选项：
 
 - [免费建立一个 Azure 帐户](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A443DD604)-获取信用额度可用于试用付费版 Azure 服务，甚至在用之后最多可以保留帐户并使用免费的 Azure 服务。
 - [激活 MSDN 订户权益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A443DD604)-MSDN 订阅提供信用额度可以用于付费版 Azure 服务的每个月。
